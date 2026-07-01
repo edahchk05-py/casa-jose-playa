@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { ImageReveal, Reveal } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
+import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -42,25 +42,7 @@ export default function GalleryPage() {
       </section>
 
       <section className="mx-auto max-w-[1440px] px-6 pb-24 md:px-12">
-        <div className="columns-2 gap-3 md:columns-3 md:gap-4">
-          {images.map((img, i) => (
-            <ImageReveal
-              key={img.src + i}
-              delay={(i % 6) * 0.05}
-              className={`relative mb-3 w-full overflow-hidden md:mb-4 ${
-                img.tall ? "aspect-[3/4]" : "aspect-square"
-              }`}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="(min-width: 768px) 33vw, 50vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </ImageReveal>
-          ))}
-        </div>
+        <GalleryGrid images={images} />
       </section>
     </>
   );
