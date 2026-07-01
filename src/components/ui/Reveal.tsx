@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
+import { useMemo } from "react";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 const EASE_CINEMATIC = [0.22, 1, 0.36, 1] as const;
 const EASE_EDITORIAL = [0.65, 0, 0.35, 1] as const;
@@ -27,19 +29,23 @@ export function Reveal({
 }: RevealProps) {
   const reduced = useReducedMotion();
 
-  const variants: Variants = reduced
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.4 } },
-      }
-    : {
-        hidden: { opacity: 0, y },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration, delay, ease: EASE_CINEMATIC },
-        },
-      };
+  const variants: Variants = useMemo(
+    () =>
+      reduced
+        ? {
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { duration: 0.4 } },
+          }
+        : {
+            hidden: { opacity: 0, y },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration, delay, ease: EASE_CINEMATIC },
+            },
+          },
+    [reduced, y, duration, delay]
+  );
 
   return (
     <motion.div
@@ -64,19 +70,23 @@ export function ImageReveal({
 }: RevealProps) {
   const reduced = useReducedMotion();
 
-  const variants: Variants = reduced
-    ? {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.4 } },
-      }
-    : {
-        hidden: { clipPath: "inset(100% 0% 0% 0%)", opacity: 1 },
-        visible: {
-          clipPath: "inset(0% 0% 0% 0%)",
-          opacity: 1,
-          transition: { duration, delay, ease: EASE_EDITORIAL },
-        },
-      };
+  const variants: Variants = useMemo(
+    () =>
+      reduced
+        ? {
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { duration: 0.4 } },
+          }
+        : {
+            hidden: { clipPath: "inset(100% 0% 0% 0%)", opacity: 1 },
+            visible: {
+              clipPath: "inset(0% 0% 0% 0%)",
+              opacity: 1,
+              transition: { duration, delay, ease: EASE_EDITORIAL },
+            },
+          },
+    [reduced, duration, delay]
+  );
 
   return (
     <motion.div
@@ -134,16 +144,20 @@ export function RevealStaggerItem({
 }) {
   const reduced = useReducedMotion();
 
-  const variants: Variants = reduced
-    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
-    : {
-        hidden: { opacity: 0, y },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.7, ease: EASE_CINEMATIC },
-        },
-      };
+  const variants: Variants = useMemo(
+    () =>
+      reduced
+        ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+        : {
+            hidden: { opacity: 0, y },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.7, ease: EASE_CINEMATIC },
+            },
+          },
+    [reduced, y]
+  );
 
   return (
     <motion.div className={className} variants={variants}>
