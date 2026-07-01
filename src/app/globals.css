@@ -91,6 +91,21 @@ body {
   background: var(--soft-gold);
 }
 
+@keyframes hero-zoom {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.hero-zoom {
+  animation: hero-zoom 26s ease-in-out infinite;
+  will-change: transform;
+}
+
 a,
 button {
   -webkit-tap-highlight-color: transparent;
