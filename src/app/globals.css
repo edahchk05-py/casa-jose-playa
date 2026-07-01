@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --ivory: #faf7f2;
+  --sand: #e9e1d4;
+  --warm-white: #fffdfa;
+  --stone: #8a847c;
+  --charcoal: #1f2320;
+  --deep-ocean: #16303a;
+  --med-blue: #3f6270;
+  --olive: #6b7355;
+  --soft-gold: #b89b5e;
+  --soft-gold-dim: rgba(184, 155, 94, 0.35);
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-sand: var(--sand);
+  --color-warm-white: var(--warm-white);
+  --color-stone: var(--stone);
+  --color-charcoal: var(--charcoal);
+  --color-deep-ocean: var(--deep-ocean);
+  --color-med-blue: var(--med-blue);
+  --color-olive: var(--olive);
+  --color-soft-gold: var(--soft-gold);
+
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-instrument);
+
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-editorial: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--soft-gold-dim);
+  color: var(--charcoal);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.underline-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-soft);
+}
+
+.underline-hover:hover::after,
+.underline-hover:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.gold-rule {
+  background: var(--soft-gold);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  z-index: 100;
+  background: var(--warm-white);
+  color: var(--charcoal);
+  padding: 0.75rem 1.25rem;
+  border-radius: 2px;
+}
+
+.skip-link:focus {
+  left: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--soft-gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
