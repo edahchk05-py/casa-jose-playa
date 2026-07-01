@@ -60,7 +60,7 @@ export function Reveal({
   );
 }
 
-/** Clip-path image reveal — the signature "editorial spread" entrance. */
+/** Editorial image reveal — fade + settle entrance for photography. */
 export function ImageReveal({
   children,
   className,
@@ -78,10 +78,10 @@ export function ImageReveal({
             visible: { opacity: 1, transition: { duration: 0.4 } },
           }
         : {
-            hidden: { clipPath: "inset(100% 0% 0% 0%)", opacity: 1 },
+            hidden: { opacity: 0, scale: 1.045 },
             visible: {
-              clipPath: "inset(0% 0% 0% 0%)",
               opacity: 1,
+              scale: 1,
               transition: { duration, delay, ease: EASE_EDITORIAL },
             },
           },
