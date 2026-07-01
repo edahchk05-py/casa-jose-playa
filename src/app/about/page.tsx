@@ -76,8 +76,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2">
-        <ImageReveal className="relative aspect-[4/3] md:aspect-auto">
+      <section className="grid grid-cols-1 md:grid-cols-2 md:h-[640px]">
+        <ImageReveal className="relative aspect-[4/3] md:aspect-auto md:h-full">
           <Image
             src="/images/from-the-sea-chef.jpg"
             alt="A chef selecting fresh oysters and fish on ice"
@@ -86,7 +86,7 @@ export default function AboutPage() {
             className="object-cover"
           />
         </ImageReveal>
-        <ImageReveal delay={0.1} className="relative aspect-[4/3] md:aspect-auto">
+        <ImageReveal delay={0.1} className="relative aspect-[4/3] md:aspect-auto md:h-full">
           <Image
             src="/images/fire-kitchen-sardines.jpg"
             alt="Grilled sardines held on a plate with the beach umbrellas behind"
