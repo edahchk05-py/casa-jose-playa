@@ -32,8 +32,9 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
                 alt={img.alt}
                 fill
                 sizes="(min-width: 768px) 33vw, 50vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
               />
+              <div className="absolute inset-0 bg-charcoal/0 transition-colors duration-500 group-hover:bg-charcoal/5" />
             </button>
           </ImageReveal>
         ))}

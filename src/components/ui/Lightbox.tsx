@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export type LightboxImage = {
   src: string;
@@ -18,6 +19,7 @@ type LightboxProps = {
 
 /** Fullscreen lightbox for the gallery grid — click a thumbnail, browse with arrows/keyboard. */
 export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) {
+  const { t } = useLanguage();
   const open = index !== null;
   const current = open ? images[index] : null;
 
@@ -65,33 +67,33 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
         >
           <button
             type="button"
-            aria-label="Close gallery"
+            aria-label={t.gallery.lightbox.close}
             onClick={onClose}
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center text-2xl text-warm-white/80 transition-colors duration-300 hover:text-soft-gold md:right-8 md:top-8"
+            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center text-2xl text-warm-white/80 transition-all duration-300 hover:scale-110 hover:text-soft-gold md:right-8 md:top-8"
           >
             ×
           </button>
 
           <button
             type="button"
-            aria-label="Previous image"
+            aria-label={t.gallery.lightbox.prev}
             onClick={(event) => {
               event.stopPropagation();
               goPrev();
             }}
-            className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-3xl text-warm-white/70 transition-colors duration-300 hover:text-soft-gold md:left-6"
+            className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-3xl text-warm-white/70 transition-all duration-300 hover:scale-110 hover:text-soft-gold md:left-6"
           >
             ‹
           </button>
 
           <button
             type="button"
-            aria-label="Next image"
+            aria-label={t.gallery.lightbox.next}
             onClick={(event) => {
               event.stopPropagation();
               goNext();
             }}
-            className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-3xl text-warm-white/70 transition-colors duration-300 hover:text-soft-gold md:right-6"
+            className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-3xl text-warm-white/70 transition-all duration-300 hover:scale-110 hover:text-soft-gold md:right-6"
           >
             ›
           </button>

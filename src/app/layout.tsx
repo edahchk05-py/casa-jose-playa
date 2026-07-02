@@ -4,7 +4,11 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { SkipLink } from "@/components/layout/SkipLink";
+import { PageTransition } from "@/components/layout/PageTransition";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/site-config";
+import { dictionaries, defaultLocale } from "@/lib/i18n/dictionary";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -21,26 +25,29 @@ const instrument = Instrument_Sans({
   display: "swap",
 });
 
+const t = dictionaries[defaultLocale];
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s — ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: t.home.meta.description,
   openGraph: {
     title: siteConfig.name,
-    description: siteConfig.description,
+    description: t.home.meta.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
     images: [{ url: "/images/hero-paella-table.jpg", width: 1200, height: 800 }],
     locale: siteConfig.locale,
+    alternateLocale: [siteConfig.alternateLocale],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
-    description: siteConfig.description,
+    description: t.home.meta.description,
     images: ["/images/hero-paella-table.jpg"],
   },
   icons: {
@@ -92,22 +99,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${instrument.variable}`}>
+    <html lang={defaultLocale} className={`${cormorant.variable} ${instrument.variable}`}>
       <body className="flex min-h-full flex-col antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantJsonLd) }}
         />
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
-        <SmoothScroll>
-          <Header />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </SmoothScroll>
+        <LanguageProvider>
+          <SkipLink />
+          <SmoothScroll>
+            <Header />
+            <main id="main-content" className="flex-1">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <Footer />
+          </SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   );

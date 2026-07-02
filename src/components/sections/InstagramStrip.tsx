@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { siteConfig } from "@/lib/site-config";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const posts = [
   { src: "/images/spread-onto-table.jpg", alt: "Overhead spread of tapas and paella onto the table" },
@@ -12,10 +16,12 @@ const posts = [
 ];
 
 export function InstagramStrip() {
+  const { t } = useLanguage();
+
   return (
     <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28">
       <Reveal className="mb-10 text-center">
-        <p className="eyebrow mb-4 text-stone">Follow Along</p>
+        <Eyebrow className="mb-4 justify-center text-stone">{t.home.instagramStrip.eyebrow}</Eyebrow>
         <a
           href={siteConfig.social.instagram}
           target="_blank"

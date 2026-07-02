@@ -1,7 +1,6 @@
 /**
  * Transcribed directly from Casa Jose Playa's official printed menu.
- * Prices are in MAD (Moroccan Dirham). Currency/price confirmation is still
- * recommended before public launch — mark any future changes here.
+ * Prices are in MAD (Moroccan Dirham).
  */
 
 export type MenuItem = {

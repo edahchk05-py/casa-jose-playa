@@ -7,11 +7,13 @@ import { BeachLifestyle } from "@/components/sections/BeachLifestyle";
 import { ReservationCTA } from "@/components/sections/ReservationCTA";
 import { InstagramStrip } from "@/components/sections/InstagramStrip";
 import { TimeOfDayGrade } from "@/components/effects/TimeOfDayGrade";
+import { dictionaries, defaultLocale } from "@/lib/i18n/dictionary";
+
+const t = dictionaries[defaultLocale];
 
 export const metadata: Metadata = {
-  title: "Casa Jose Playa — Mediterranean Seafood on the Beach, Dar Bouazza",
-  description:
-    "Casa Jose Playa is a beachfront table in Dar Bouazza, Casablanca, serving fire-cooked paella, fresh oysters, and Mediterranean seafood from sea to sand.",
+  title: t.home.meta.title,
+  description: t.home.meta.description,
 };
 
 export default function Home() {
@@ -20,12 +22,8 @@ export default function Home() {
       <Hero />
 
       <StoryChapter
-        numeral="I"
-        label="From the Sea"
-        headline="Every plate begins before sunrise, on the docks."
-        body="Our fishermen bring in the day's catch while Casablanca still sleeps. By the time it reaches your table, it has traveled no further than the tide."
-        quote="We don't choose the menu. The sea does."
-        cta={{ label: "Explore the Menu", href: "/menu" }}
+        chapterKey="sea"
+        ctaHref="/menu"
         image={{
           src: "/images/from-the-sea-raw-platter.jpg",
           alt: "A raw seafood platter of fish, lobster, and shellfish resting on the sand at the water's edge",
@@ -33,11 +31,8 @@ export default function Home() {
       />
 
       <StoryChapter
-        numeral="II"
-        label="Fresh Ingredients"
-        headline="Oysters, citrus, and nothing to hide behind."
-        body="Simplicity is a discipline here. Cold oysters, good olive oil, a squeeze of lemon — the kind of dishes that only work when every ingredient is honest."
-        cta={{ label: "See What's Fresh", href: "/menu" }}
+        chapterKey="ingredients"
+        ctaHref="/menu"
         image={{
           src: "/images/fresh-oysters-wine.jpg",
           alt: "Fresh oysters on ice beside a glass of chilled white wine on grey stone",
@@ -46,12 +41,8 @@ export default function Home() {
       />
 
       <StoryChapter
-        numeral="III"
-        label="Into the Fire"
-        headline="A wood fire, a wide pan, and a lot of patience."
-        body="Our paella is cooked the old way — over open flame, in cast iron worn smooth by years of service. No shortcuts, no induction, no rushing the rice."
-        quote="Paella isn't a recipe. It's a rhythm."
-        cta={{ label: "Meet the Kitchen", href: "/about" }}
+        chapterKey="fire"
+        ctaHref="/about"
         image={{
           src: "/images/fire-kitchen-chef.jpg",
           alt: "A chef cooking paella over an open wood fire in the kitchen",

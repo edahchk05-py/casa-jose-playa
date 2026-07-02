@@ -2,7 +2,10 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { navLinks, siteConfig } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
+import { getNavLinks } from "@/lib/i18n/nav-links";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { LanguageSwitch } from "@/components/layout/LanguageSwitch";
 
 export function MobileMenu({
   open,
@@ -11,6 +14,9 @@ export function MobileMenu({
   open: boolean;
   onClose: () => void;
 }) {
+  const { t } = useLanguage();
+  const navLinks = getNavLinks(t);
+
   return (
     <AnimatePresence>
       {open && (
@@ -49,7 +55,8 @@ export function MobileMenu({
             ))}
           </motion.nav>
 
-          <div className="flex flex-col gap-3 border-t border-warm-white/15 pt-6 text-sm tracking-[0.08em] uppercase text-warm-white/70">
+          <div className="flex flex-col gap-5 border-t border-warm-white/15 pt-6 text-sm tracking-[0.08em] uppercase text-warm-white/70">
+            <LanguageSwitch tone="light" />
             <span>{siteConfig.address.full}</span>
             <a href={siteConfig.contact.phoneHref} className="underline-hover">
               {siteConfig.contact.phoneDisplay}

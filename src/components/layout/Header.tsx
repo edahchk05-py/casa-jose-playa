@@ -3,14 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navLinks } from "@/lib/site-config";
+import { getNavLinks } from "@/lib/i18n/nav-links";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { LanguageSwitch } from "@/components/layout/LanguageSwitch";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { t } = useLanguage();
+  const navLinks = getNavLinks(t);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -31,8 +35,10 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-400 ${
-          transparent ? "bg-transparent" : "bg-ivory/95 backdrop-blur-sm"
+        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-400 ${
+          transparent
+            ? "bg-transparent"
+            : "bg-ivory/95 shadow-[0_1px_0_0_rgba(31,35,32,0.06)] backdrop-blur-sm"
         }`}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-5 md:px-12">
@@ -58,13 +64,16 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-6">
+            <div className="hidden md:block">
+              <LanguageSwitch tone={transparent ? "light" : "dark"} />
+            </div>
             <Link
               href="/reservations"
               className={`hidden underline-hover text-[0.8rem] tracking-[0.1em] uppercase md:inline-block transition-colors duration-400 ${
                 transparent ? "text-warm-white" : "text-soft-gold"
               }`}
             >
-              Reserve
+              {t.nav.reserve}
             </Link>
             <button
               type="button"

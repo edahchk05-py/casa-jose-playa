@@ -4,12 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const HEADLINE_WORDS = ["Casa", "Jose", "Playa"];
 
 export function Hero() {
   const reduced = useReducedMotion();
+  const { t } = useLanguage();
 
   return (
     <section className="relative flex h-[100svh] w-full items-end overflow-hidden bg-deep-ocean">
@@ -50,7 +52,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
           className="eyebrow mb-5 text-warm-white/85"
         >
-          A Beachfront Table &middot; Dar Bouazza, Casablanca
+          {t.home.hero.eyebrow}
         </motion.p>
 
         <h1 className="font-display max-w-3xl text-[3rem] leading-[1.05] text-warm-white sm:text-[4rem] md:text-[5.5rem]">
@@ -74,7 +76,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.95, ease: EASE }}
           className="font-display mt-6 max-w-md text-xl italic text-warm-white/95 md:text-2xl"
         >
-          Where the sea slows time.
+          {t.home.hero.tagline}
         </motion.p>
 
         <motion.p
@@ -83,8 +85,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 1.1, ease: EASE }}
           className="mt-4 max-w-md text-base leading-relaxed text-warm-white/75"
         >
-          Fire-cooked paella, oysters cracked to order, and a table set where
-          the Atlantic meets the sand — Mediterranean seafood, unhurried.
+          {t.home.hero.description}
         </motion.p>
 
         <motion.div
@@ -98,14 +99,14 @@ export function Hero() {
             variant="ghost"
             className="border-soft-gold bg-soft-gold text-charcoal hover:border-warm-white hover:bg-warm-white hover:text-charcoal"
           >
-            Reserve a Table
+            {t.home.hero.ctaPrimary}
           </Button>
 
           <Link
             href="/menu"
             className="underline-hover text-[0.8rem] tracking-[0.12em] uppercase text-warm-white/90 transition-colors duration-300 hover:text-soft-gold"
           >
-            Explore the Menu
+            {t.home.hero.ctaSecondary}
           </Link>
         </motion.div>
       </div>
@@ -128,7 +129,7 @@ export function Hero() {
           />
         </div>
         <p className="eyebrow px-4 py-3 text-warm-white/80">
-          Fire-Kissed, Off the Grill
+          {t.home.hero.signatureTeaser}
         </p>
       </motion.div>
 
@@ -150,7 +151,7 @@ export function Hero() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="block text-[0.7rem] tracking-[0.2em] text-warm-white/70 uppercase"
         >
-          Discover
+          {t.home.hero.scrollCue}
         </motion.span>
       </motion.div>
     </section>
