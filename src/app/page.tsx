@@ -6,6 +6,7 @@ import { GalleryPreview } from "@/components/sections/GalleryPreview";
 import { BeachLifestyle } from "@/components/sections/BeachLifestyle";
 import { ReservationCTA } from "@/components/sections/ReservationCTA";
 import { InstagramStrip } from "@/components/sections/InstagramStrip";
+import { TimeOfDayGrade } from "@/components/effects/TimeOfDayGrade";
 
 export const metadata: Metadata = {
   title: "Casa Jose Playa — Mediterranean Seafood on the Beach, Dar Bouazza",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
+    <TimeOfDayGrade>
       <Hero />
 
       <StoryChapter
@@ -66,6 +67,6 @@ export default function Home() {
       <ReservationCTA />
 
       <InstagramStrip />
-    </>
+    </TimeOfDayGrade>
   );
 }
